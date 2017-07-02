@@ -1,5 +1,7 @@
 FROM alpine:3.6
 
+RUN adduser -S mopidy
+
 # Default configuration
 COPY mopidy.conf /var/lib/mopidy/.config/mopidy/mopidy.conf
 
@@ -24,9 +26,10 @@ RUN apk update \
     && pip install -U six \
     && pip install  Mopidy-GMusic pyasn1==0.1.8
 
+RUN chown mopidy:audio -R /var/lib/mopidy/.config \
+    && chown mopidy:audio /entrypoint.sh
 
 # Run as mopidy user
 USER mopidy
 
-ENTRYPOINT ["/usr/local/bin/dumb-init", "/entrypoint.sh"]
 CMD ["/usr/bin/mopidy"]
