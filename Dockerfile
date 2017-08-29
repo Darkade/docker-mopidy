@@ -15,7 +15,7 @@ RUN apk update \
             --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
             --repository  http://dl-cdn.alpinelinux.org/alpine/edge/community \
             --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-            gstreamer=1.12.1-r1 \
+            gstreamer \
             mopidy=2.1.0-r1 \
             py-pip=9.0.1-r1 \
             python-dev alpine-sdk \
@@ -24,7 +24,7 @@ RUN apk update \
     && pip install --upgrade pip \
     && if [[ ! -e /usr/bin/pip ]]; then ln -sf /usr/bin/pip3.4 /usr/bin/pip; fi \
     && pip install -U six \
-    && pip install  Mopidy-GMusic pyasn1==0.1.8
+    && pip install  Mopidy-GMusic Mopidy-Youtube pyasn1==0.1.8
 
 RUN chown mopidy:audio -R /etc/mopidy \
     && chown mopidy:audio /entrypoint.sh
