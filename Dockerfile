@@ -24,7 +24,7 @@ RUN apk update \
     && pip install --upgrade pip \
     && if [[ ! -e /usr/bin/pip ]]; then ln -sf /usr/bin/pip3.4 /usr/bin/pip; fi \
     && pip install -U six \
-    && pip install  Mopidy-GMusic Mopidy-Youtube pyasn1==0.1.8
+    && pip install  Mopidy-GMusic Mopidy-Youtube youtube-dl pyasn1
 
 RUN chown mopidy:audio -R /etc/mopidy \
     && chown mopidy:audio /entrypoint.sh
